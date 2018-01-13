@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--
+	<script type="text/javascript" src="/js/d3.js"></script>
+	<script type="text/javascript" src="/js/jquery-2.1.1.js"></script>
+	-->
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- 可选的Bootstrap主题文件（一般不使用） -->
+<!--
+	<script src="/css/bootstrap-theme.min.css"></script> 
+-->
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<!--
+<script src="/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery-ui"></script>
+<link href="/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
+
+<script src="/js/angular.min.js"></script>
+<script src="/js/angular-sanitize.min.js"></script>
+
+<script src="/js/echarts-all-3.js"></script>
+-->
+<title>主页</title>
+<script type="text/javascript">
+	//获取滚动条当前的位置
+	function getScrollTop() {
+	  var scrollTop = 0;
+	  if (document.documentElement && document.documentElement.scrollTop) {
+	    scrollTop = document.documentElement.scrollTop;
+	  } else if (document.body) {
+	    scrollTop = document.body.scrollTop;
+	  }
+	  return scrollTop;
+	}
+
+	//获取当前可视范围的高度
+	function getClientHeight() {
+	  var clientHeight = 0;
+	  if (document.body.clientHeight && document.documentElement.clientHeight) {
+	    clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
+	  } else {
+	    clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
+	  }
+	  return clientHeight;
+	}
+
+	//获取文档完整的高度
+	function getScrollHeight() {
+	  return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+	}
+	//dom onready事件监听
+	function loadReady(){
+		resize();
+		setTimeout(hideMask,1);
+	}
+	//窗体大小改变时，调整margin-top;
+	function resize(){
+		var domDiv = document.getElementById("idDivContent");
+		var realHeight = domDiv.offsetHeight;
+		var clientHeight = getClientHeight();
+		var marginTop = (clientHeight-realHeight)*0.4;
+		if(marginTop>0){
+			domDiv.style.marginTop=marginTop+"px";
+		}
+	}
+	
+	function hideMask(){
+		document.getElementById("idDivMask").style.display="none";
+	}
+</script>
+<style type="text/css">
+	body{
+		font-family:'微软雅黑','Helvetica Neue','Helvetica','Arial','sans-serif';
+	}
+	a{
+	    position: relative;
+	    outline: none;
+	    text-decoration: none;
+	    font-size: 14px;
+	}
+	a:visited{
+
+	}
+	a:hover,.hover_underline:hover{
+	    text-decoration:underline;
+	}
+	.div_piece a:hover::before, .div_piece a:hover::after { position: absolute; }
+	/*
+	.div_piece a:hover::before { content: "\5B"; left: -15px; }
+	.div_piece a:hover::after { content: "\5D"; right:  -15px; }
+	*/
+	.div_piece a:hover::before { content: "\261E"; left: -15px; }
+	.div_piece a:hover::after { content: "\261C"; right:  -15px; }
+
+    .div_tb{
+        display: table;
+        width: 100%;
+        margin:0px;
+        padding-top:5px;
+        padding-bottom: 10px;
+    }
+    .div_tb>div{
+        display: table-row;
+    }
+    .div_tb>div>div{
+        display: table-cell;
+        width: 33.3333%;
+        vertical-align: middle;
+        padding-left: 10px;
+        padding-top: 10px;
+    }
+	.span_info{
+        color:green;
+        width: 100%;
+    }
+    .div_piece{
+    	/*一个div块*/
+ 		background-color:#FFFFFF;
+ 		border: 1px solid rgb(241,241,241);
+ 		margin-top:10px;
+    }
+    .div_piece:hover{
+		border: 1px solid #458B74;
+    }
+    .left_top_title{
+    	/*div块的左上角的title的样式*/
+    	padding-left: 5px;
+    	padding-top:2px;
+    	color:black;
+    	position: absolute;
+    	opacity: 0.8;
+    }
+    .left_top_title:hover::after{
+    	content:"\27B7";
+    }
+    body{
+    	/*
+    	background: url(/images/main_page_background.png) no-repeat center;
+    	*/
+    	background: rgba(241,241,241,0.3);
+    }
+
+</style>
+</head>
+<body onload="loadReady();" onresize="resize();" >
+
+<!-- 遮罩(防止页面闪烁) ,页面载入并计算完成之后,会隐藏掉 -->
+<div id="idDivMask" style="display:block;width:100%;height:100%;position:absolute;top:0px;left:0px; 
+ z-index:999999; background-color: white;" >
+ </div>
+
+<div style="float:left;width:100%;">
+<div style="display:table;width:100%;">
+<div style="display:table-cell;width:100%;" align="center">
+<!-- 正文，页面宽度，margin都在此处指定 -->
+<div id="idDivContent" style="width:800px;margin-top:30px;">
+<div class="div_piece">
+	<div class='left_top_title' align='left'>主页</div>
+	<div class="div_tb container-fluid">
+		<div class='row-fluid'>
+			<div class='span4'>
+				<div><a href="/dir" target="_blank">文件索引</a></div>
+			</div>
+			<div  class='span4'>
+				<div><a href="/documents" target="_blank">文档</a></div>
+			</div>
+			<div  class='span4'>
+				<div><a href="/log.txt" target="_blank">日志</a></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div style="display: table;width: 100%;margin-top: 10px; " >
+	<div style="display: table-row;width: 100%; " >
+		<!--server-->
+		<div align="right" style="display: table-cell;width: 60%;color:black;opacity: 0.7; " >
+			<i style="padding-left: 5px; " >Powered by <a href="http://nodejs.cn" target='_blank' >Node.js</a> v4.4.4</i>
+		</div>
+	</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+</body>
+</html>
