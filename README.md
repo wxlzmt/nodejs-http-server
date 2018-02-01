@@ -88,5 +88,7 @@ var _CACHE_SIZE = 1024*50;
 ```shell
 # iptables -I INPUT -p tcp --dport 80 -j ACCEPT
 # service iptables save
-# service iptables save
+# service iptables restart
 ```
+`service iptables restart`可以不用执行
+
